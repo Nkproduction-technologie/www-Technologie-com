@@ -3,36 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lien personnalisé</title>
+  <title>NEKARIO Loïc Prince Joël - Logisticien</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 50px;
-      background-color: #f4f4f4;
+      flex-direction: column;
     }
     h1 {
-      color: #333;
+      font-size: 3rem;
+      margin: 0;
+      animation: fadeInDown 1s ease-in-out;
     }
-    .type {
-      font-size: 18px;
-      color: #666;
+    h2 {
+      font-weight: normal;
+      margin: 10px 0 20px;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+    p {
+      max-width: 500px;
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    a.button {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #ffcc00;
+      color: #1e3c72;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: background 0.3s;
+      animation: fadeInUp 2.5s ease-in-out;
+    }
+    a.button:hover {
+      background: #ffdb4d;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1 id="name">Chargement...</h1>
-  <p class="type" id="type"></p>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get('n') || "Visiteur";
-    const type = params.get('t') || "";
-
-    document.getElementById('name').textContent = name;
-    if (type) {
-      document.getElementById('type').textContent = "Type : " + type;
-    }
-  </script>
+  <h1>NEKARIO Loïc Prince Joël</h1>
+  <h2>Logisticien</h2>
+  <p>
+    Passionné par l'organisation, la gestion des flux et l'optimisation des ressources,
+    je mets mon expertise au service de solutions logistiques efficaces et durables.
+  </p>
+  <a href="mailto:tonemail@example.com" class="button">Me Contacter</a>
 </body>
 </html>
