@@ -3,99 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEKARIO Loïc Prince Joël - Logisticien</title>
+<title>Fête de l'Indépendance RCA</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(to bottom, #003082 20%, #FFD700 40%, #DC143C 60%, #009543 80%, #FFFFFF 100%);
-        overflow: hidden;
-    }
-    .container {
-        text-align: center;
-        background: rgba(255,255,255,0.9);
-        border-radius: 20px;
-        padding: 50px;
-        position: relative;
-        box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-        animation: fadeIn 2s ease-in-out;
-    }
-    h1 {
-        font-size: 2.5em;
-        margin: 0;
-        color: #003082;
-        animation: fadeInDown 1s ease-in-out;
-    }
-    h2 {
-        font-size: 1.5em;
-        margin-top: 10px;
-        color: #DC143C;
-        animation: fadeInUp 1.5s ease-in-out;
-    }
-    .links {
-        margin-top: 25px;
-    }
-    .links a {
-        text-decoration: none;
-        color: white;
-        padding: 12px 25px;
-        margin: 5px;
-        border-radius: 25px;
-        font-weight: bold;
-        display: inline-block;
-        transition: 0.3s ease;
-    }
-    .whatsapp { background: #25D366; }
-    .telegram { background: #0088cc; }
-    .teams { background: #464eb8; }
-    .links a:hover { opacity: 0.8; transform: scale(1.1); }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(
+      to bottom,
+      #0033A0 20%,   /* Bleu */
+      #FFFFFF 40%,   /* Blanc */
+      #FFD100 60%,   /* Jaune */
+      #DC143C 80%,   /* Rouge */
+      #009639 100%   /* Vert */
+    );
+    text-align: center;
+    overflow: hidden;
+  }
 
-    /* Animation cœurs */
-    .heart {
-        position: absolute;
-        font-size: 50px;
-        animation: heartbeat 1.5s infinite;
-    }
-    @keyframes heartbeat {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.3); }
-    }
+  h1 {
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.5;
+  }
 
-    /* Fade in animation */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+  .word {
+    opacity: 0;
+    display: inline-block;
+    margin-right: 5px;
+    animation: appear 0.5s forwards;
+  }
+
+  @keyframes appear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Optionnel: petits cœurs qui flottent */
+  .heart {
+    position: absolute;
+    font-size: 30px;
+    animation: float 5s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0); opacity: 1; }
+    100% { transform: translateY(-50px) translateX(100px); opacity: 0; }
+  }
 </style>
 </head>
 <body>
-    <div class="container">
-        <h1>NEKARIO Loïc Prince Joël</h1>
-        <h2>Logisticien</h2>
-        <div class="links">
-            <a class="whatsapp" href="https://wa.me/23672130432" target="_blank">WhatsApp</a>
-            <a class="telegram" href="https://t.me/tonusername" target="_blank">Telegram</a>
-            <a class="teams" href="https://teams.microsoft.com/l/chat/0/0?users=nekarioloicprincejoel@gmail.com" target="_blank">Teams</a>
-        </div>
-    </div>
 
-    <!-- Cœurs autour -->
-    <div class="heart" style="top: -30px; left: -30px; color:#003082;">❤</div>
-    <div class="heart" style="top: -30px; right: -30px; color:#FFD700;">❤</div>
-    <div class="heart" style="bottom: -30px; left: -30px; color:#DC143C;">❤</div>
-    <div class="heart" style="bottom: -30px; right: -30px; color:#009543;">❤</div>
+<h1 id="message"></h1>
+
+<script>
+  const phrase = "Loïc Prince Joël NEKARIO souhaite bonne fête 🥳 de l'indépendance à tous les Centrafricains";
+  const words = phrase.split(' ');
+  const container = document.getElementById('message');
+
+  words.forEach((word, index) => {
+    const span = document.createElement('span');
+    span.className = 'word';
+    span.textContent = word;
+    span.style.animationDelay = `${index * 0.4}s`;
+    container.appendChild(span);
+  });
+
+  // Optionnel: créer des cœurs flottants
+  for(let i = 0; i < 15; i++){
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (3 + Math.random()*3) + 's';
+    heart.style.color = ['#0033A0','#FFFFFF','#FFD100','#DC143C','#009639'][Math.floor(Math.random()*5)];
+    heart.textContent = '❤';
+    document.body.appendChild(heart);
+  }
+</script>
+
 </body>
 </html>
