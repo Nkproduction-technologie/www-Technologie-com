@@ -15,11 +15,11 @@
     height: 100vh;
     background: linear-gradient(
       to bottom,
-      #0033A0 20%,   /* Bleu */
-      #FFFFFF 40%,   /* Blanc */
-      #FFD100 60%,   /* Jaune */
-      #DC143C 80%,   /* Rouge */
-      #009639 100%   /* Vert */
+      #0033A0 20%,
+      #FFFFFF 40%,
+      #FFD100 60%,
+      #DC143C 80%,
+      #009639 100%
     );
     text-align: center;
     overflow: hidden;
@@ -28,8 +28,9 @@
   h1 {
     font-size: 2rem;
     line-height: 1.5;
-    color: white;
-    -webkit-text-stroke: 1px black; /* Contour noir */
+    color: red;
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
     text-stroke: 1px black;
   }
 
@@ -37,26 +38,30 @@
     opacity: 0;
     display: inline-block;
     margin-right: 5px;
-    animation: appear 0.5s forwards;
-    animation-fill-mode: forwards;
+    animation: bounceIn 0.6s ease-out forwards;
+    transition: transform 0.3s;
   }
 
-  @keyframes appear {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .word:hover {
+    transform: scale(1.2);
+  }
+
+  @keyframes bounceIn {
+    0% { opacity: 0; transform: translateY(30px) scale(0.8); }
+    60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+    80% { transform: translateY(5px) scale(0.95); }
+    100% { transform: translateY(0) scale(1); }
   }
 
   .heart {
     position: absolute;
     font-size: 20px;
-    animation-name: float;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation: floatSpin linear infinite;
   }
 
-  @keyframes float {
-    0% { transform: translateY(100vh) translateX(0); opacity: 1; }
-    100% { transform: translateY(-50px) translateX(50px); opacity: 0; }
+  @keyframes floatSpin {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
   }
 
   .links {
@@ -99,21 +104,20 @@
   words.forEach((word, index) => {
     const span = document.createElement('span');
     span.className = 'word';
-    span.style.animationDelay = `${index * 0.4}s`;
+    span.style.animationDelay = `${index * 0.3}s`;
     span.textContent = word;
     container.appendChild(span);
     container.appendChild(document.createTextNode(" "));
   });
 
-  // Cœurs flottants multicolores
-  for(let i=0;i<30;i++){
+  for(let i = 0; i < 30; i++) {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.textContent = '❤';
     heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.fontSize = (15 + Math.random()*25) + 'px';
-    heart.style.animationDuration = (3 + Math.random()*5) + 's';
-    heart.style.color = ['#0033A0','#FFFFFF','#FFD100','#DC143C','#009639'][Math.floor(Math.random()*5)];
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+    heart.style.color = ['#0033A0','#FFFFFF','#FFD100','#DC143C','#009639'][Math.floor(Math.random() * 5)];
     document.body.appendChild(heart);
   }
 </script>
