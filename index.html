@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fête de l'Indépendance RCA</title>
+<title>Bonne fête de l'indépendance RCA</title>
 <style>
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -26,8 +27,10 @@
 
   h1 {
     font-size: 2rem;
-    color: #fff;
     line-height: 1.5;
+    color: white;
+    -webkit-text-stroke: 1px black; /* Contour noir */
+    text-stroke: 1px black;
   }
 
   .word {
@@ -35,6 +38,7 @@
     display: inline-block;
     margin-right: 5px;
     animation: appear 0.5s forwards;
+    animation-fill-mode: forwards;
   }
 
   @keyframes appear {
@@ -42,22 +46,50 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Optionnel: petits cœurs qui flottent */
   .heart {
     position: absolute;
-    font-size: 30px;
-    animation: float 5s linear infinite;
+    font-size: 20px;
+    animation-name: float;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 
   @keyframes float {
     0% { transform: translateY(100vh) translateX(0); opacity: 1; }
-    100% { transform: translateY(-50px) translateX(100px); opacity: 0; }
+    100% { transform: translateY(-50px) translateX(50px); opacity: 0; }
+  }
+
+  .links {
+    margin-top: 25px;
+  }
+
+  .links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background: #0033A0;
+    transition: 0.3s;
+  }
+
+  .links a:hover {
+    background: #FFD100;
+    color: black;
   }
 </style>
 </head>
 <body>
 
 <h1 id="message"></h1>
+
+<div class="links">
+  <a href="https://wa.me/2367213043" target="_blank">WhatsApp</a>
+  <a href="https://t.me/23672130432" target="_blank">Telegram</a>
+  <a href="mailto:nekarioloicprincejoel@gmail.com" target="_blank">Email / Teams</a>
+</div>
 
 <script>
   const phrase = "Loïc Prince Joël NEKARIO souhaite bonne fête 🥳 de l'indépendance à tous les Centrafricains";
@@ -67,19 +99,21 @@
   words.forEach((word, index) => {
     const span = document.createElement('span');
     span.className = 'word';
-    span.textContent = word;
     span.style.animationDelay = `${index * 0.4}s`;
+    span.textContent = word;
     container.appendChild(span);
+    container.appendChild(document.createTextNode(" "));
   });
 
-  // Optionnel: créer des cœurs flottants
-  for(let i = 0; i < 15; i++){
+  // Cœurs flottants multicolores
+  for(let i=0;i<30;i++){
     const heart = document.createElement('div');
     heart.className = 'heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = (3 + Math.random()*3) + 's';
-    heart.style.color = ['#0033A0','#FFFFFF','#FFD100','#DC143C','#009639'][Math.floor(Math.random()*5)];
     heart.textContent = '❤';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.fontSize = (15 + Math.random()*25) + 'px';
+    heart.style.animationDuration = (3 + Math.random()*5) + 's';
+    heart.style.color = ['#0033A0','#FFFFFF','#FFD100','#DC143C','#009639'][Math.floor(Math.random()*5)];
     document.body.appendChild(heart);
   }
 </script>
