@@ -25,6 +25,21 @@
     overflow: hidden;
   }
 
+  .flag-frame {
+    padding: 20px;
+    border: 30px solid transparent;
+    border-image: url("https://upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Central_African_Republic.svg") 30 round;
+    border-radius: 20px;
+    animation: pulseFrame 5s infinite ease-in-out;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  @keyframes pulseFrame {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+
   h1 {
     font-size: 2rem;
     line-height: 1.5;
@@ -32,13 +47,15 @@
     font-weight: bold;
     -webkit-text-stroke: 1px black;
     text-stroke: 1px black;
+    animation: flashZoom 1s ease-in-out 5s forwards;
   }
 
   .word {
     opacity: 0;
     display: inline-block;
     margin-right: 5px;
-    animation: bounceIn 0.6s ease-out forwards;
+    animation: slideInLeft 0.6s ease-out forwards;
+    animation-fill-mode: forwards;
     transition: transform 0.3s;
   }
 
@@ -46,11 +63,15 @@
     transform: scale(1.2);
   }
 
-  @keyframes bounceIn {
-    0% { opacity: 0; transform: translateY(30px) scale(0.8); }
-    60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
-    80% { transform: translateY(5px) scale(0.95); }
-    100% { transform: translateY(0) scale(1); }
+  @keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-100px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes flashZoom {
+    0% { transform: scale(1); text-shadow: 0 0 0px white; }
+    50% { transform: scale(1.2); text-shadow: 0 0 20px white; }
+    100% { transform: scale(1); text-shadow: 0 0 0px white; }
   }
 
   .heart {
@@ -62,6 +83,21 @@
   @keyframes floatSpin {
     0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
     100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
+  }
+
+  .flag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 50px;
+    animation: wave 2s infinite ease-in-out;
+  }
+
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
   }
 
   .links {
@@ -88,13 +124,25 @@
 </head>
 <body>
 
-<h1 id="message"></h1>
+<!-- Petit drapeau flottant -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Flag_of_the_Central_African_Republic.svg" alt="Drapeau RCA" class="flag">
+
+<!-- Cadre avec le drapeau RCA -->
+<div class="flag-frame">
+  <h1 id="message"></h1>
+</div>
 
 <div class="links">
   <a href="https://wa.me/2367213043" target="_blank">WhatsApp</a>
   <a href="https://t.me/23672130432" target="_blank">Telegram</a>
   <a href="mailto:nekarioloicprincejoel@gmail.com" target="_blank">Email / Teams</a>
 </div>
+
+<!-- Hymne RCA automatique -->
+<audio id="hymne" autoplay loop>
+  <source src="hymne-rca.mp3" type="audio/mpeg">
+  Ton navigateur ne supporte pas l'audio.
+</audio>
 
 <script>
   const phrase = "Loïc Prince Joël NEKARIO souhaite bonne fête 🥳 de l'indépendance à tous les Centrafricains";
@@ -120,6 +168,13 @@
     heart.style.color = ['#0033A0','#FFFFFF','#FFD100','#DC143C','#009639'][Math.floor(Math.random() * 5)];
     document.body.appendChild(heart);
   }
+
+  window.addEventListener('load', () => {
+    const audio = document.getElementById('hymne');
+    audio.play().catch(() => {
+      console.log("Lecture automatique bloquée par le navigateur.");
+    });
+  });
 </script>
 
 </body>
