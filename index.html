@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Codes WiFi - Portail Captif</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête -->
+        <header class="header">
+            <h1><i class="fas fa-wifi"></i> Gestionnaire de Codes WiFi</h1>
+            <p>Générez et gérez les accès à votre portail captif</p>
+        </header>
+
+        <!-- Section de génération -->
+        <section class="generator-card card">
+            <h2><i class="fas fa-key"></i> Générer un Nouveau Code</h2>
+            
+            <div class="form-group">
+                <label for="duration">Durée d'accès :</label>
+                <select id="duration">
+                    <option value="1">1 heure - 500 FCFA</option>
+                    <option value="3">3 heures - 1 000 FCFA</option>
+                    <option value="24" selected>24 heures - 2 000 FCFA</option>
+                    <option value="168">1 semaine - 5 000 FCFA</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="client-name">Nom du client (optionnel) :</label>
+                <input type="text" id="client-name" placeholder="Ex: Jean Dupont">
+            </div>
+
+            <button id="generate-btn" class="btn-generate">
+                <i class="fas fa-bolt"></i> Générer le Code
+            </button>
+
+            <!-- Code généré -->
+            <div id="code-display" class="code-display" style="display: none;">
+                <h3>Code Généré :</h3>
+                <div class="code-value" id="generated-code">IUGE-A1B2-C3D4</div>
+                <div class="code-info">
+                    <span id="code-duration">Durée: 24h</span>
+                    <span id="code-price">Prix: 2 000 FCFA</span>
+                </div>
+                <button id="copy-btn" class="btn-copy">
+                    <i class="far fa-copy"></i> Copier le Code
+                </button>
+                <button id="save-btn" class="btn-save">
+                    <i class="fas fa-save"></i> Enregistrer dans la Base
+                </button>
+            </div>
+        </section>
+
+        <!-- Section de gestion des codes -->
+        <section class="codes-card card">
+            <h2><i class="fas fa-list"></i> Codes Générés</h2>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="active">Actifs</button>
+                <button class="filter-btn" data-filter="used">Utilisés</button>
+                <button class="filter-btn" data-filter="expired">Expirés</button>
+            </div>
+
+            <!-- Tableau des codes -->
+            <div class="table-container">
+                <table id="codes-table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Durée</th>
+                            <th>Client</th>
+                            <th>Statut</th>
+                            <th>Créé le</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="codes-list">
+                        <!-- Les codes seront chargés ici par JavaScript -->
+                        <tr class="empty-row">
+                            <td colspan="6" style="text-align: center;">
+                                <i class="fas fa-inbox"></i> Aucun code généré pour le moment
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Codes</span>
+                    <span class="stat-value" id="total-codes">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Actifs</span>
+                    <span class="stat-value active" id="active-codes">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Revenus</span>
+                    <span class="stat-value revenue" id="total-revenue">0 FCFA</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2024 Portail Captif - Développé avec Acode & JavaScript</p>
+            <p class="version">v1.0.0</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="database.js"></script>
+    <script src="app.js"></script>
+</body>
+                              </html>
